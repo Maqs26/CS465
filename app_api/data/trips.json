@@ -1,0 +1,32 @@
+[
+  {
+    "code": "OAHU",
+    "name": "Oahu Surf Adventure",
+    "length": "7 days",
+    "start": "Honolulu",
+    "resort": "Waikiki Beach Resort",
+    "perPerson": "$1499",
+    "image": "oahu.jpg",
+    "description": "Explore Oahu with guided surf lessons, snorkeling, and island tours."
+  },
+  {
+    "code": "MAUI",
+    "name": "Maui Sunset Escape",
+    "length": "5 days",
+    "start": "Kahului",
+    "resort": "Sunset Bay Suites",
+    "perPerson": "$1299",
+    "image": "maui.jpg",
+    "description": "Enjoy Maui beaches, scenic drives, and local cuisine experiences."
+  },
+  {
+    "code": "KAUAI",
+    "name": "Kauai Nature Retreat",
+    "length": "6 days",
+    "start": "Lihue",
+    "resort": "Garden Isle Lodge",
+    "perPerson": "$1399",
+    "image": "kauai.jpg",
+    "description": "Discover waterfalls, hiking trails, and coastal adventures in Kauai."
+  }
+]
