@@ -7,8 +7,9 @@
 
       <div id="navigation">
         <ul>
-          <li [class.selected]="true"><a routerLink="/">View Trips</a></li>
-          <li><a routerLink="/add">Add Trip</a></li>
+          <li *ngFor="let link of topNavLinks" routerLinkActive="selected" [routerLinkActiveOptions]="{ exact: link.path === '/' }">
+            <a [routerLink]="link.path">{{ link.label }}</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -27,8 +28,9 @@
   <div id="footer">
     <div>
       <ul class="navigation">
-        <li class="active"><a routerLink="/">View Trips</a></li>
-        <li><a routerLink="/add">Add Trip</a></li>
+        <li *ngFor="let link of topNavLinks" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: link.path === '/' }">
+          <a [routerLink]="link.path">{{ link.label }}</a>
+        </li>
       </ul>
     </div>
 
