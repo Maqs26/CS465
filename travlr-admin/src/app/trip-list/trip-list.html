@@ -1,1 +1,9 @@
-<p>trip-list works!</p>
+<h1>{{ title }}</h1>
+
+<ul id="sites">
+  <li *ngFor="let trip of trips">
+    <img [src]="trip.image" alt="Trip image">
+    <h2>{{ trip.name }}</h2>
+    <p>{{ trip.description }}</p>
+  </li>
+</ul>
