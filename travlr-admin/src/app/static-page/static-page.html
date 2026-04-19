@@ -1,0 +1,10 @@
+<h1>{{ content().heading }}</h1>
+<p class="intro">{{ content().intro }}</p>
+
+<ul class="feature-grid">
+  <li *ngFor="let item of content().items">
+    <img [src]="item.image" [alt]="item.title">
+    <h2>{{ item.title }}</h2>
+    <p>{{ item.description }}</p>
+  </li>
+</ul>

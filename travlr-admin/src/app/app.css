@@ -1,7 +1,18 @@
+#navigation {
+  overflow-x: auto;
+}
+
+#navigation ul {
+  display: flex;
+  width: max-content;
+  min-width: 860px;
+}
+
 #navigation li {
-  width: 429px;
+  min-width: 122px;
+  width: auto;
 }
 
 #footer > div {
-  width: 822px;
+  width: 860px;
 }

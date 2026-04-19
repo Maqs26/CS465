@@ -1,0 +1,57 @@
+.trip-form {
+  max-width: 780px;
+}
+
+.form-grid {
+  display: grid;
+  gap: 14px 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+label {
+  color: #5a4535;
+  display: flex;
+  flex-direction: column;
+  font: 600 14px/1.4 Arial, Helvetica, sans-serif;
+  gap: 6px;
+}
+
+label.wide {
+  grid-column: 1 / -1;
+}
+
+input,
+textarea {
+  border: 1px solid #b59a82;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font: 14px Arial, Helvetica, sans-serif;
+  padding: 9px 10px;
+  width: 100%;
+}
+
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.actions {
+  margin-top: 16px;
+}
+
+button {
+  background: #2b9688;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font: 700 14px Arial, Helvetica, sans-serif;
+  padding: 10px 18px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

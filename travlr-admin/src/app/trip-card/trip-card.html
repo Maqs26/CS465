@@ -1,5 +1,5 @@
 <li>
-  <img [src]="trip.image" alt="Trip image">
+  <img [src]="imageSource()" [alt]="trip.name">
   <h2>{{ trip.name }}</h2>
   <p>{{ trip.description }}</p>
   <p><strong>Resort:</strong> {{ trip.resort }}</p>
