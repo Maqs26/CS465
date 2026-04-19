@@ -1,8 +1,16 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const ctrlTrips = require("../controllers/trips");
+const ctrlTrips = require('../controllers/trips');
 
-router.get("/trips", ctrlTrips.readTrips);
-router.get("/trips/:tripCode", ctrlTrips.readTrip);
+router
+  .route('/trips')
+  .get(ctrlTrips.readTrips)
+  .post(ctrlTrips.createTrip);
+
+router
+  .route('/trips/:tripCode')
+  .get(ctrlTrips.readTrip)
+  .put(ctrlTrips.updateTrip)
+  .delete(ctrlTrips.deleteTrip);
 
 module.exports = router;

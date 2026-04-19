@@ -1,19 +1,50 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TripService } from '../trip.service';
+import { Router } from '@angular/router';
+import { TripCardComponent } from '../trip-card/trip-card.component';
+import { Trip, TripService } from '../trip.service';
 
 @Component({
   selector: 'app-trip-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TripCardComponent],
   templateUrl: './trip-list.html',
-  styleUrls: ['./trip-list.css']
+  styleUrls: ['./trip-list.css'],
 })
-export class TripListComponent {
-  readonly title = 'Travel';
-  readonly trips;
+export class TripListComponent implements OnInit {
+  readonly title = 'Travlr Getaways Admin';
+  trips: Trip[] = [];
+  errorMessage = '';
 
-  constructor(private readonly tripService: TripService) {
-    this.trips = this.tripService.getTrips();
+  private readonly tripService = inject(TripService);
+  private readonly router = inject(Router);
+
+  ngOnInit(): void {
+    this.loadTrips();
+  }
+
+  loadTrips(): void {
+    this.tripService.getTrips().subscribe({
+      next: (trips) => {
+        this.trips = trips;
+        this.errorMessage = '';
+      },
+      error: () => {
+        this.errorMessage = 'Unable to load trips. Make sure the API server is running.';
+      },
+    });
+  }
+
+  editTrip(trip: Trip): void {
+    this.router.navigate(['/add'], { state: { trip } });
+  }
+
+  deleteTrip(code: string): void {
+    this.tripService.deleteTrip(code).subscribe({
+      next: () => this.loadTrips(),
+      error: () => {
+        this.errorMessage = `Unable to delete trip ${code}.`;
+      },
+    });
   }
 }
