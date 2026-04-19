@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface Trip {
   name: string;
@@ -15,40 +17,22 @@ export interface Trip {
   providedIn: 'root',
 })
 export class TripService {
-  private readonly trips: Trip[] = [
-    {
-      name: "Gale Reef",
-      code: "GALE-REEF",
-      length: 7,
-      start: "2026-06-15",
-      resort: "Emerald Bay",
-      perPerson: 899,
-      image: "assets/images/reef1.jpg",
-      description: "Beautiful reef with amazing views."
-    },
-    {
-      name: "Dawson's Reef",
-      code: "DAWSON-REEF",
-      length: 5,
-      start: "2026-07-10",
-      resort: "Blue Lagoon",
-      perPerson: 699,
-      image: "assets/images/reef2.jpg",
-      description: "Crystal clear water and marine life."
-    },
-    {
-      name: "Claire's Reef",
-      code: "CLAIRE-REEF",
-      length: 4,
-      start: "2026-08-20",
-      resort: "Coral Sands",
-      perPerson: 599,
-      image: "assets/images/reef3.jpg",
-      description: "Perfect for diving and exploration."
-    }
-  ];
+  private readonly http = inject(HttpClient);
+  private readonly apiBaseUrl = 'http://localhost:3000/api';
 
-  getTrips(): Trip[] {
-    return this.trips;
+  getTrips(): Observable<Trip[]> {
+    return this.http.get<Trip[]>(`${this.apiBaseUrl}/trips`);
+  }
+
+  addTrip(trip: Trip): Observable<Trip> {
+    return this.http.post<Trip>(`${this.apiBaseUrl}/trips`, trip);
+  }
+
+  updateTrip(originalCode: string, trip: Trip): Observable<Trip> {
+    return this.http.put<Trip>(`${this.apiBaseUrl}/trips/${originalCode}`, trip);
+  }
+
+  deleteTrip(code: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiBaseUrl}/trips/${code}`);
   }
 }

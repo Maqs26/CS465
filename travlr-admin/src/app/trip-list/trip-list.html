@@ -1,9 +1,11 @@
 <h1>{{ title }}</h1>
+<p *ngIf="errorMessage">{{ errorMessage }}</p>
 
 <ul id="sites">
-  <li *ngFor="let trip of trips">
-    <img [src]="trip.image" alt="Trip image">
-    <h2>{{ trip.name }}</h2>
-    <p>{{ trip.description }}</p>
-  </li>
+  <app-trip-card
+    *ngFor="let trip of trips"
+    [trip]="trip"
+    (edit)="editTrip($event)"
+    (remove)="deleteTrip($event)">
+  </app-trip-card>
 </ul>

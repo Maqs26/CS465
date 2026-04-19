@@ -1,2 +1,46 @@
-<h1>Add Trip</h1>
-<p>This page is now using the original Travlr site styling. Hook your form controls here.</p>
+<h1>{{ isEditing ? 'Edit Trip' : 'Add Trip' }}</h1>
+<p *ngIf="errorMessage">{{ errorMessage }}</p>
+
+<form #tripForm="ngForm" (ngSubmit)="saveTrip(tripForm)">
+  <label>
+    Name
+    <input name="name" [(ngModel)]="trip.name" required>
+  </label>
+
+  <label>
+    Code
+    <input name="code" [(ngModel)]="trip.code" required>
+  </label>
+
+  <label>
+    Length (days)
+    <input type="number" min="1" name="length" [(ngModel)]="trip.length" required>
+  </label>
+
+  <label>
+    Start Date
+    <input type="date" name="start" [(ngModel)]="trip.start" required>
+  </label>
+
+  <label>
+    Resort
+    <input name="resort" [(ngModel)]="trip.resort" required>
+  </label>
+
+  <label>
+    Price Per Person
+    <input type="number" min="0" name="perPerson" [(ngModel)]="trip.perPerson" required>
+  </label>
+
+  <label>
+    Image Path
+    <input name="image" [(ngModel)]="trip.image" required>
+  </label>
+
+  <label>
+    Description
+    <textarea name="description" [(ngModel)]="trip.description" required></textarea>
+  </label>
+
+  <button type="submit">{{ isEditing ? 'Save Trip' : 'Add Trip' }}</button>
+</form>
