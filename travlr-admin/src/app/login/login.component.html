@@ -1,0 +1,18 @@
+<h1>Admin Login</h1>
+<p *ngIf="errorMessage">{{ errorMessage }}</p>
+
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+  <label for="username">Username</label>
+  <input id="username" name="username" [(ngModel)]="credentials.username" required />
+
+  <label for="password">Password</label>
+  <input
+    id="password"
+    name="password"
+    type="password"
+    [(ngModel)]="credentials.password"
+    required
+  />
+
+  <button type="submit">Log In</button>
+</form>

@@ -1,16 +1,17 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CurrencyPipe, DatePipe } from '@angular/common';
+import { CurrencyPipe, DatePipe, NgIf } from '@angular/common';
 import { Trip } from '../trip.service';
 
 @Component({
   selector: 'app-trip-card',
   standalone: true,
-  imports: [DatePipe, CurrencyPipe],
+  imports: [DatePipe, CurrencyPipe, NgIf],
   templateUrl: './trip-card.html',
   styleUrl: './trip-card.css',
 })
 export class TripCardComponent {
   @Input({ required: true }) trip!: Trip;
+  @Input() showActions = false;
   @Output() edit = new EventEmitter<Trip>();
   @Output() remove = new EventEmitter<string>();
 

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { TripCardComponent } from '../trip-card/trip-card.component';
 import { Trip, TripService } from '../trip.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-trip-list',
@@ -17,6 +18,7 @@ export class TripListComponent implements OnInit {
   errorMessage = '';
 
   private readonly tripService = inject(TripService);
+  private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
 
   ngOnInit(): void {
@@ -35,11 +37,25 @@ export class TripListComponent implements OnInit {
     });
   }
 
+  canEdit(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
   editTrip(trip: Trip): void {
+    if (!this.canEdit()) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
     this.router.navigate(['/add'], { state: { trip } });
   }
 
   deleteTrip(code: string): void {
+    if (!this.canEdit()) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
     this.tripService.deleteTrip(code).subscribe({
       next: () => this.loadTrips(),
       error: () => {

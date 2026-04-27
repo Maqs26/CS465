@@ -1,11 +1,11 @@
 <li>
-  <img [src]="imageSource()" [alt]="trip.name">
+  <img [src]="imageSource()" [alt]="trip.name" />
   <h2>{{ trip.name }}</h2>
   <p>{{ trip.description }}</p>
   <p><strong>Resort:</strong> {{ trip.resort }}</p>
   <p><strong>Length:</strong> {{ trip.length }} days</p>
-  <p><strong>Start:</strong> {{ trip.start | date:'longDate' }}</p>
+  <p><strong>Start:</strong> {{ trip.start | date: 'longDate' }}</p>
   <p><strong>Price:</strong> {{ trip.perPerson | currency }}</p>
-  <button type="button" (click)="onEdit()">Edit</button>
-  <button type="button" (click)="onDelete()">Delete</button>
+  <button *ngIf="showActions" type="button" (click)="onEdit()">Edit</button>
+  <button *ngIf="showActions" type="button" (click)="onDelete()">Delete</button>
 </li>
