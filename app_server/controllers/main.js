@@ -1,51 +1,44 @@
+const Trip = require('../../app_api/models/trips');
+
 const home = (req, res) => {
-    res.render("index", { title: "Home" });
+  res.render('index', { title: 'Home' });
 };
 
 const about = (req, res) => {
-    res.render("about", { title: "About" });
+  res.render('about', { title: 'About' });
 };
 
 const contact = (req, res) => {
-    res.render("contact", { title: "Contact" });
+  res.render('contact', { title: 'Contact' });
 };
 
+const travel = async (req, res) => {
+  try {
+    const trips = await Trip.find({}).lean();
 
-const travel = (req, res) => {
-    const trips = [
-        {
-            name: "Gale Reef",
-            description: "Beautiful reef with amazing views.",
-            image: "/images/reef1.jpg"
-        },
-        {
-            name: "Dawson’s Reef",
-            description: "Crystal clear water and marine life.",
-            image: "/images/reef2.jpg"
-        },
-        {
-            name: "Claire’s Reef",
-            description: "Perfect for diving and exploration.",
-            image: "/images/reef3.jpg"
-        }
-    ];
-
-    res.render("travel", {
-        title: "Travel",
-        trips: trips
+    res.render('travel', {
+      title: 'Travel',
+      trips,
     });
+  } catch (err) {
+    res.status(500).render('travel', {
+      title: 'Travel',
+      trips: [],
+      error: 'Unable to load trips from database.',
+    });
+  }
 };
 
 const rooms = (req, res) => {
-    res.render("rooms", { title: "Rooms" });
+  res.render('rooms', { title: 'Rooms' });
 };
 
 const meals = (req, res) => {
-    res.render("meals", { title: "Meals" });
+  res.render('meals', { title: 'Meals' });
 };
 
 const news = (req, res) => {
-    res.render("news", { title: "News" });
+  res.render('news', { title: 'News' });
 };
 
 module.exports = {
@@ -55,5 +48,5 @@ module.exports = {
   travel,
   rooms,
   meals,
-  news
+  news,
 };
