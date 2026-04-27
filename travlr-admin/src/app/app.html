@@ -2,13 +2,23 @@
   <div id="page">
     <div id="header">
       <div id="logo">
-        <a routerLink="/"><img src="assets/images/logo.png" alt="LOGO" height="100" width="200"></a>
+        <a routerLink="/"><img src="assets/images/logo.png" alt="LOGO" height="100" width="200" /></a>
       </div>
 
       <div id="navigation">
         <ul>
-          <li *ngFor="let link of topNavLinks" routerLinkActive="selected" [routerLinkActiveOptions]="{ exact: link.path === '/' }">
+          <li
+            *ngFor="let link of topNavLinks"
+            routerLinkActive="selected"
+            [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+          >
             <a [routerLink]="link.path">{{ link.label }}</a>
+          </li>
+          <li *ngIf="!isLoggedIn()" routerLinkActive="selected">
+            <a routerLink="/login">Log In</a>
+          </li>
+          <li *ngIf="isLoggedIn()">
+            <a href="#" (click)="logout(); $event.preventDefault()">Log Out</a>
           </li>
         </ul>
       </div>
@@ -28,7 +38,11 @@
   <div id="footer">
     <div>
       <ul class="navigation">
-        <li *ngFor="let link of topNavLinks" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: link.path === '/' }">
+        <li
+          *ngFor="let link of topNavLinks"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+        >
           <a [routerLink]="link.path">{{ link.label }}</a>
         </li>
       </ul>

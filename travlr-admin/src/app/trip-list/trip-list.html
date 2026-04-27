@@ -1,11 +1,14 @@
 <h1>{{ title }}</h1>
 <p *ngIf="errorMessage">{{ errorMessage }}</p>
+<p *ngIf="!canEdit()">Log in as an admin to add, edit, or delete trips.</p>
 
 <ul id="sites">
   <app-trip-card
     *ngFor="let trip of trips"
     [trip]="trip"
+    [showActions]="canEdit()"
     (edit)="editTrip($event)"
-    (remove)="deleteTrip($event)">
+    (remove)="deleteTrip($event)"
+  >
   </app-trip-card>
 </ul>

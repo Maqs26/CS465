@@ -25,3 +25,5 @@ if (mongoose) {
 }
 
 require("../models/trips");
+
+require('../models/users');
