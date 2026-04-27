@@ -63,4 +63,13 @@ export class TripListComponent implements OnInit {
       },
     });
   }
+
+  addTrip(): void {
+    if (!this.canEdit()) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    this.router.navigate(['/add']);
+  }
 }

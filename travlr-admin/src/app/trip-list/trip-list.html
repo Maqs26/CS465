@@ -2,11 +2,17 @@
 <p *ngIf="errorMessage">{{ errorMessage }}</p>
 <p *ngIf="!canEdit()">Log in as an admin to add, edit, or delete trips.</p>
 
+<div class="actions">
+  <button type="button" (click)="addTrip()">
+    {{ canEdit() ? 'Add Booked Trip' : 'Log In to Add Trips' }}
+  </button>
+</div>
+
 <ul id="sites">
   <app-trip-card
     *ngFor="let trip of trips"
     [trip]="trip"
-    [showActions]="canEdit()"
+    [showActions]="true"
     (edit)="editTrip($event)"
     (remove)="deleteTrip($event)"
   >
