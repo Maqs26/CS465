@@ -43,24 +43,26 @@ img {
 #navigation {
 	background: url(../images/bg-navigation.png) no-repeat;
 	clear: both;
-	height: 50px;
+	min-height: 50px;
 	width: 860px;
 	margin: 0 auto;
 	padding: 1px;
 }
 #navigation ul {
-	display: inline-block;
-	width: 860px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
 	list-style: none;
 	margin: 0;
 	padding: 0;
+	width: 100%;
 }
 #navigation li {
-	float: left;
+	flex: 1 1 122px;
+	min-width: 110px;
 	background-position: 0 -118px;
-	background-repeat: no-repeat;
+	background-repeat: repeat-x;
 	height: 49px;
-	width: 122px;
 	margin: 0;
 	padding-left: 1px;
 	text-align: center;
@@ -72,11 +74,15 @@ img {
 }
 #navigation li a {
 	color: #fff;
-	display: block;
-	font: bold 14px/48px Arial, Helvetica, sans-serif;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font: bold 14px/1.1 Arial, Helvetica, sans-serif;
 	height: 49px;
+	padding: 0 10px;
 	text-decoration: none;
 	text-transform: uppercase;
+	white-space: nowrap;
 }
 #navigation li a:hover {
 	background-position: 0 -59px;
@@ -542,4 +548,17 @@ hr {
 }
 #connect a.googleplus:hover {
 	background-position: 0 -197px;
+}
+
+@media screen and (max-width: 980px) {
+	#page {
+		width: 100%;
+	}
+	#navigation {
+		width: calc(100% - 40px);
+		background-size: 100% 100%;
+	}
+	#navigation li {
+		flex: 1 1 140px;
+	}
 }
